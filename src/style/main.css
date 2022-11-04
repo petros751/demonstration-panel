@@ -1,0 +1,103 @@
+.login_page_container,
+.sign_up_page_container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.login_form_container,
+.sign_up_form_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 94px);
+}
+
+
+.login_form_wrapper,
+.sign_up_form_wrapper {
+  max-width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login_form,
+.sign_up_form {
+  min-width: 300px;
+}
+
+.loginBtn {
+    background-color: #23A5Eb !important;
+    color: white !important;
+}
+
+.loginBtn {
+background-color: #23A5Eb !important;
+color: white !important;
+}
+
+.panelTables {
+margin-top: 3%;
+}
+
+.logoNavbar {
+width: 2.5em !important;
+}
+
+.ui.menu {
+border-radius: 0% !important;
+margin: 0 !important;
+}
+
+.spinner {
+margin: auto !important;
+}
+
+.ui.table thead tr:first-child > th {
+position: sticky !important;
+top: 0;
+z-index: 2;
+}
+
+.ui.table td.three.wide, .ui.table th.three.wide {
+  width: 23.75%;
+}
+
+.ui.sortable.table thead th.sorted {
+color: rgba(0, 0, 0, .95);
+background-color:rgba(255, 255, 255, 1);
+}
+
+.ui.sortable.table thead th:after {
+  display: inline;
+}
+
+thead button.ascending::after {
+content: '👇';
+display: inline-block;
+margin-left: 1em;
+}
+
+thead button.descending::after {
+content: '☝️';
+display: inline-block;
+margin-left: 1em;
+}
+
+div.users-table-container,
+div.projects-table-container {
+max-height: 600px;
+overflow-y: scroll;
+margin-top: 1em;
+}
+
+table.ui.sortable.table thead th:hover,
+table.ui.sortable.table thead th.sorted:hover {
+background-color: lightgrey;
+}
+
+.ui.table td {
+  word-break:break-all;
+}
+
