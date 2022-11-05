@@ -66,8 +66,7 @@ const LoginComponent = () => {
               <Form.Input
                 icon="user"
                 iconPosition="left"
-                label="Email"
-                // type="email"
+                label="Username"
                 name="username"
                 onChange={OnChangeUsername}
                 value={username}
@@ -76,7 +75,6 @@ const LoginComponent = () => {
                 icon={<Icon name={showPassword ? 'eye slash' : 'eye'} link onClick={togglePassView} />}
                 iconPosition="left"
                 label="Password"
-                // type="password"
                 type={showPassword ? 'text' : 'password'}
                 name="password"
                 onChange={OnChangePassword}

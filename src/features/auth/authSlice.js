@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const AUTH_SLICE = 'AUTH';
 
-const initialToken = localStorage.getItem('jwtToken');
+const initialToken = localStorage.getItem('token');
 
 const initialState = {
   auth: !!initialToken,

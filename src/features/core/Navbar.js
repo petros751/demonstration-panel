@@ -24,7 +24,7 @@ const NavBar = () => {
       {state.token
         ? (
           <Menu.Menu position="right">
-            <Dropdown item text={state.user.name}>
+            <Dropdown item>
               <Dropdown.Menu>
                 <Dropdown.Item 
                   // onClick={onLogout}

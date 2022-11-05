@@ -3,7 +3,8 @@ import createSagaMiddleware from 'redux-saga';
 import logger from 'redux-logger';
 import authReducer from '../features/auth/authSlice';
 import appReducer from './appSlice';
-// import usersReducer from '../features/users/usersSlice';
+import usersReducer from '../features/users/usersSlice';
+import productsReducer from '../features/products/productsSlice';
 import rootSaga from './saga';
 
 // Create the saga middleware
@@ -23,7 +24,8 @@ if (devMode) {
 const reducer = combineReducers({
   auth: authReducer,
   globals: appReducer,
-  // users: usersReducer,
+  users: usersReducer,
+  products: productsReducer,
 });
 
 export const store = configureStore({

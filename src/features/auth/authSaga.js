@@ -35,7 +35,6 @@ function* loginSaga(action) {
     }
   } catch (err) {
     yield put(setAuthError(err));
-    // eslint-disable-next-line no-console
     console.error('New error', err);
   }
 }
