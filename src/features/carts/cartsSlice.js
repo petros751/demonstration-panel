@@ -14,9 +14,9 @@ const initialState = {
       setCarts: (state, action) => {
         console.log(action.payload);
         state.carts = action.payload.carts;
-        // state.limit = action.payload.limit;
-        // state.offset = action.payload.offset;
-        // state.totalUsers = action.payload.totalUsers;
+        state.limit = action.payload.limit;
+        state.skip = action.payload.skip;
+        state.totalCarts = action.payload.total;
       },
       setLoadCarts: (state, action) => {
         state.loadCarts = action.payload;

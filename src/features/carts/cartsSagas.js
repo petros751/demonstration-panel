@@ -5,10 +5,10 @@ import { setCarts, fetchCarts, setLoadCarts } from './cartsSlice';
 import { fetchCartsListCall } from '../../utils/apiCalls';
 import { setAuthError } from '../auth/authSlice';
 
-function* fetchCartsSaga() {
+function* fetchCartsSaga(action) {
     try {
       yield put(setLoadCarts(true));
-      const res = yield call(fetchCartsListCall);
+      const res = yield call(fetchCartsListCall, action.payload);
       if (res.error && res.error === 'Could not authenticate user') {
         yield put(setAuthError(res.error));
       } else {

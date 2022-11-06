@@ -63,9 +63,9 @@ export const loginUser = async (payload) => {
     return response;
   };
 
-  export const fetchCartsListCall = async () => {
+  export const fetchCartsListCall = async (queryParams) => {
     const requestOptions = {
-      url: GET_CARTS,
+      url: `${GET_CARTS}?limit=${queryParams.limit}&skip=${queryParams.skip ? queryParams.skip : 0}`,
       method: 'GET',
     };
   
