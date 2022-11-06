@@ -15,7 +15,7 @@ const Carts = () => {
         dispatch(fetchCarts());
     }, []);
 
-    const renderCartsList = () => (products.lenght
+    const renderCartsList = () => (carts.lenght
         ? (
             <Item>
                 <Header as="h4">No carts found!</Header>

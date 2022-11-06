@@ -5,6 +5,7 @@ import authReducer from '../features/auth/authSlice';
 import appReducer from './appSlice';
 import usersReducer from '../features/users/usersSlice';
 import productsReducer from '../features/products/productsSlice';
+import cartsReducer from '../features/carts/cartsSlice';
 import rootSaga from './saga';
 
 // Create the saga middleware
@@ -26,6 +27,7 @@ const reducer = combineReducers({
   globals: appReducer,
   users: usersReducer,
   products: productsReducer,
+  carts: cartsReducer,
 });
 
 export const store = configureStore({
