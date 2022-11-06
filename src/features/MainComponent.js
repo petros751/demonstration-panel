@@ -16,7 +16,7 @@ export default function MainComponent() {
   return (
     <div className="container">
       <div className="panelTables">
-        <Tab defaultActiveIndex={3} panes={mainPanes} />
+        <Tab defaultActiveIndex={0} panes={mainPanes} />
       </div>
       <ToastContainer />
     </div>
