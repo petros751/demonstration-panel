@@ -52,7 +52,6 @@ function* fetchUsersSaga(action) {
       }
     } catch (err) {
       toast.error(err, { position: 'top-center' });
-      // eslint-disable-next-line no-console
       console.error('New error', err);
     }
   }
@@ -70,7 +69,6 @@ function* fetchUsersSaga(action) {
       }
     } catch (err) {
       toast.error(err, { position: 'top-center' });
-      // eslint-disable-next-line no-console
       console.error('New error', err);
     }
   }
@@ -86,7 +84,6 @@ function* fetchUsersSaga(action) {
       }
     } catch (err) {
       toast.error(err, { position: 'top-center' });
-      // eslint-disable-next-line no-console
       console.error('New error', err);
     }
   }

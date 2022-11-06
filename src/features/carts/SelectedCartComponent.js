@@ -21,49 +21,54 @@ const SelectedCart = (props) => {
         )
         : props.cart.products.map((productItem, i) => (
             <List.Item key={i}>
-            <List.Content floated='right'>
-                Total: {productItem.total}
-            </List.Content>
-            <List.Content>
-                <List.Header>{productItem.title}</List.Header>
-                <List.Description>Price: {productItem.price} x {productItem.quantity}</List.Description>
-            </List.Content>
-        </List.Item>
+                <List.Content floated='right'>
+                    Total: {productItem.total}
+                </List.Content>
+                <List.Content>
+                    <List.Header>{productItem.title}</List.Header>
+                    <List.Description>Price: {productItem.price} x {productItem.quantity}</List.Description>
+                </List.Content>
+            </List.Item>
         )));
 
-        const cartsProductsListLoading = (
-            <List.Item>
-                <Dimmer active inverted>
-                    <Loader
-                        type="ThreeDots"
-                        color="#00BFFF"
-                        height={80}
-                        width={80}
-                        timeout={10000}
-                        className="spinner" />
-                </Dimmer>
-            </List.Item>
-        );
+    const cartsProductsListLoading = (
+        <List.Item>
+            <Dimmer active inverted>
+                <Loader
+                    type="ThreeDots"
+                    color="#00BFFF"
+                    height={80}
+                    width={80}
+                    timeout={10000}
+                    className="spinner" />
+            </Dimmer>
+        </List.Item>
+    );
 
     return (
         <div>
             <Header>Cart ID: {props.cart.id}</Header>
             <Header>Order Products: </Header>
             <List divided verticalAlign='middle'>
-                {props.cart.products ? renderProductsList(props.cart.products): cartsProductsListLoading}
+                {props.cart.products ? renderProductsList(props.cart.products) : cartsProductsListLoading}
             </List>
             {cartUser ?
-            <div>
-                <Header>Customer Informations:</Header>
-                <Item.Description>
-                <p>Name: {cartUser.firstName} {cartUser.lastName}</p>
-                <p>Phone: {cartUser.phone}</p>
-                <p>Email: {cartUser.email}</p>
-                <p>Address: {cartUser.address.address}, {cartUser.address.city}, {cartUser.address.state}, {cartUser.address.postalCode}</p>
-              </Item.Description>
-            </div>
-            :
-                <Header>Customer Informations: {props.cart.userId}</Header>
+                <div>
+                    <Header>Customer Informations:</Header>
+                    <Item.Description>
+                        <p>Name: {cartUser.firstName} {cartUser.lastName}</p>
+                        <p>Phone: {cartUser.phone}</p>
+                        <p>Email: {cartUser.email}</p>
+                        <p>Address: {cartUser.address.address}, {cartUser.address.city}, {cartUser.address.state}, {cartUser.address.postalCode}</p>
+                    </Item.Description>
+                </div>
+                :
+                <div>
+                    <Header>Customer Informations:</Header>
+                    <Item.Description>
+                        <p>Not avaliable yet!</p>
+                    </Item.Description>
+                </div>
             }
             <Header>Final total: {props.cart.total}</Header>
         </div>
