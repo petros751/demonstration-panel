@@ -7,6 +7,7 @@ import {
     fetchProducts,
 } from './productsSlice';
 import EditProductModal from './modals/EditProduct.modal';
+import AddProductModal from './modals/AddProduct.model';
 
 const INITIAL_FETCH_PARAMS = () => ({
     limit: 8
@@ -20,6 +21,7 @@ const Products = () => {
     const [pagination, setPagination] = useState({ activePage: 1, totalPages: 1 });
     const [totalItems, setTotalItems] = useState(0);
     const [pageSize, setPageSize] = useState(20);
+    const [addProductModal, setAddProductModal] = useState(false);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -49,7 +51,7 @@ const Products = () => {
             </Table.Row>
         )
         : products.map((productItem, i) => (
-            <Table.Row key={i}>
+            <Table.Row key={i} warning={productItem.stock <= 5 ? true : false} >
                 <Table.Cell width={1}>
                     <Button
                         size="tiny"
@@ -86,6 +88,10 @@ const Products = () => {
         setFetchProductsParams({ ...fetchProductsParams, skip: pageSize * (data.activePage - 1) });
     };
 
+    const showAddProductModal = () => {
+        setAddProductModal(true);
+    };
+
     return (
         <div>
             <Dimmer active={loadProducts} inverted>
@@ -97,6 +103,11 @@ const Products = () => {
                     timeout={10000}
                     className="spinner" />
             </Dimmer>
+            <div className="logsFilters">
+                <div className="filtersDate">
+                    <Button circular size="tiny" onClick={() => showAddProductModal()} color="blue" icon="add circle" />
+                </div>
+            </div>
             <Table striped>
                 <Table.Header>
                     <Table.Row>
@@ -151,6 +162,15 @@ const Products = () => {
                     }
                 </div>
             </div>
+            {/* Modals */}
+            <AddProductModal
+                modalOpen={addProductModal}
+                handleClose={
+                    () => {
+                        setAddProductModal(false);
+                    }
+                }
+            />
             {editmodeProductModal
                 && (
                     <EditProductModal

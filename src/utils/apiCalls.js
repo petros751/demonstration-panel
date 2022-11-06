@@ -5,6 +5,8 @@ import {
   GET_CARTS,
   UPDATE_USER,
   CREATE_USER,
+  UPDATE_PRODUCT,
+  CREATE_PRODUCT,
 } from './apiUrls';
 import { request } from './request';
 
@@ -81,7 +83,7 @@ export const loginUser = async (payload) => {
     return response;
   };
 
-  export const updateUserCall = async (user, ) => {
+  export const updateUserCall = async (user) => {
     const requestOptions = {
       url: UPDATE_USER + user.id,
       method: 'PUT',
@@ -154,3 +156,42 @@ export const loginUser = async (payload) => {
   
     return response;
   };
+
+  export const updateProductCall = async (product) => {
+    const requestOptions = {
+      url: UPDATE_PRODUCT + product.id,
+      method: 'PUT',
+      body: product
+    };
+  
+    let response;
+    try {
+      response = await request(requestOptions);
+    } catch (err) {
+      if (err.response && err.response?.data) {
+        response = err.response?.data;
+      }
+    }
+  
+    return response;
+  };
+
+  export const createProductCall = async (product) => {
+    const requestOptions = {
+      url: CREATE_PRODUCT,
+      method: 'POST',
+      body: product
+    };
+  
+    let response;
+    try {
+      response = await request(requestOptions);
+    } catch (err) {
+      if (err.response && err.response?.data) {
+        response = err.response?.data;
+      }
+    }
+  
+    return response;
+  };
+  

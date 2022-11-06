@@ -43,7 +43,7 @@ const EditUserModal = (props) => {
       username,
       id,
     };
-    dispatch(updateUser({ user, fetchUsersParams: props.fetchUsersParams }));
+    dispatch(updateUser(user));
     props.handleClose();
   };
 

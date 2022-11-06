@@ -20,8 +20,15 @@ const initialState = {
       setLoadProducts: (state, action) => {
         state.loadProducts = action.payload;
       },
+      setUpdateProduct: (state, action) => {
+        state.products = state.products.map((product) => ((product.id === action.payload.id) ? { ...product, ...action.payload } : product));
+      },
+      setNewProduct: (state, action) => {
+        state.products = [...state.products, action.payload];
+      },
       fetchProducts: () => {},
       updateProduct: () => {},
+      createProudct: () => {},
     },
   });
 
@@ -30,6 +37,9 @@ const initialState = {
     fetchProducts,
     setLoadProducts,
     updateProduct,
+    setUpdateProduct,
+    createProudct,
+    setNewProduct,
   } = productsSlice.actions;
 
   export const productsSliceSelector = (state) => state.products;

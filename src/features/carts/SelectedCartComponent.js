@@ -22,11 +22,11 @@ const SelectedCart = (props) => {
         : props.cart.products.map((productItem, i) => (
             <List.Item key={i}>
                 <List.Content floated='right'>
-                    Total: {productItem.total}
+                    Total: {productItem.total}€
                 </List.Content>
                 <List.Content>
                     <List.Header>{productItem.title}</List.Header>
-                    <List.Description>Price: {productItem.price} x {productItem.quantity}</List.Description>
+                    <List.Description>Price: {productItem.price}€ x {productItem.quantity}</List.Description>
                 </List.Content>
             </List.Item>
         )));
@@ -47,7 +47,7 @@ const SelectedCart = (props) => {
 
     return (
         <div>
-            <Header>Cart ID: {props.cart.id}</Header>
+            <Header>Cart id: {props.cart.id}</Header>
             <Header>Order Products: </Header>
             <List divided verticalAlign='middle'>
                 {props.cart.products ? renderProductsList(props.cart.products) : cartsProductsListLoading}
@@ -70,7 +70,7 @@ const SelectedCart = (props) => {
                     </Item.Description>
                 </div>
             }
-            <Header>Final total: {props.cart.total}</Header>
+            <Header>Final total: {props.cart.total}€</Header>
         </div>
     );
 };

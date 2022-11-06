@@ -35,14 +35,14 @@ const EditProductModal = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = {
+    const product = {
         title,
         price,
         description,
         stock,
         id,
     };
-    dispatch(updateProduct({ user, fetchProductsParams: props.fetchProductsParams }));
+    dispatch(updateProduct(product));
     props.handleClose();
   };
 

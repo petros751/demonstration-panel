@@ -4,3 +4,5 @@ export const GET_PRODUCTS = `https://dummyjson.com/products`;
 export const GET_CARTS = `https://dummyjson.com/carts`;
 export const UPDATE_USER = `https://dummyjson.com/users/`;
 export const CREATE_USER = `https://dummyjson.com/users/add`;
+export const UPDATE_PRODUCT = `https://dummyjson.com/products/`;
+export const CREATE_PRODUCT = `https://dummyjson.com/products/add`;

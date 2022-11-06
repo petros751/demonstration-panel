@@ -41,9 +41,7 @@ function* fetchUsersSaga(action) {
 
   function* updateUserSaga(action) {
     try {
-      const { user } = action.payload;
-      console.log(user);
-      const res = yield call(updateUserCall, user,);
+      const res = yield call(updateUserCall, action.payload);
       if (res) {
         yield put(setUpdatedUser(res));
         toast.success('User updated successfully!', { position: 'top-center' });
