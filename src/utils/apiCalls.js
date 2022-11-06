@@ -137,4 +137,20 @@ export const loginUser = async (payload) => {
     return response;
   };
 
+  export const deleteUserCall = async (id) => {
+    const requestOptions = {
+      url: GET_USERS + '/' + id,
+      method: 'DELETE',
+    };
   
+    let response;
+    try {
+      response = await request(requestOptions);
+    } catch (err) {
+      if (err.response && err.response?.data) {
+        response = err.response?.data;
+      }
+    }
+  
+    return response;
+  };

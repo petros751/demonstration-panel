@@ -34,10 +34,16 @@ const initialState = {
       setCartUser: (state, action) => {
         state.cartUser = action.payload;
       },
+      updateUserList: (state, action) => {
+        state.users = state.users.filter(user => {
+          return user.id !== action.payload;
+        })
+      },
       fetchUsers: () => {},
       updateUser: () => {},
       createUser: () => {},
       fetchCartUser: () => {},
+      deleteUser: () => {},
     },
   });
 
@@ -52,6 +58,8 @@ const initialState = {
     setNewUser,
     fetchCartUser,
     setCartUser,
+    deleteUser,
+    updateUserList,
   } = usersSlice.actions;
 
   export const usersSliceSelector = (state) => state.users;

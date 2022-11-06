@@ -3,6 +3,7 @@ import { Button, Modal, Form, Grid } from 'semantic-ui-react';
 import { useDispatch } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import { updateUser } from '../usersSlice';
+import DeleteModal from './Delete.modal';
 import 'react-toastify/dist/ReactToastify.css';
 
 const EditUserModal = (props) => {
@@ -11,6 +12,7 @@ const EditUserModal = (props) => {
   const [lastName, setLastName] = useState('');
   const [firstName, setFirstName] = useState('');
   const [id, setId] = useState('');
+  const [disableModal, setDisableModal] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -49,18 +51,14 @@ const EditUserModal = (props) => {
     props.handleClose();
   };
 
+  const deleteUserModal = () => {
+    setDisableModal(!disableModal);
+  };
+
   return (
     <div>
       <Modal open={props.modalOpen}>
-        <Modal.Header>
-          <Grid divided="vertically">
-            <Grid.Row columns={3}>
-              <Grid.Column style={{ marginBottom: 0, margin: 'auto' }}>
-                Edit User
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Modal.Header>
+        <Modal.Header>Edit User</Modal.Header>
         <Modal.Content scrolling>
           <Form onSubmit={handleSubmit}>
             <Form.Field>
@@ -104,6 +102,7 @@ const EditUserModal = (props) => {
               />
             </Form.Field>
           </Form>
+          <div style={{textAlign: "center", marginTop: "2%"}}><Button onClick={deleteUserModal} basic color='red'>Delete User</Button></div>
         </Modal.Content>
         <Modal.Actions>
           <Button type="submit" className="loginBtn btn" onClick={handleSubmit}>Save User</Button>
@@ -111,6 +110,17 @@ const EditUserModal = (props) => {
         </Modal.Actions>
       </Modal>
       <ToastContainer />
+      {disableModal && (
+      <DeleteModal
+        modalOpen={disableModal}
+        handleClose={
+            () => {
+              setDisableModal(false);
+            }
+          }
+        disableUser={props.user}
+      />
+      )}
     </div>
   );
 };

@@ -11,12 +11,15 @@ import {
   setNewUser,
   fetchCartUser,
   setCartUser,
+  deleteUser,
+  updateUserList,
 } from './usersSlice';
 import {
   fetchUsersListCall,
   updateUserCall,
   createUserCall,
   fetchCartUserCall,
+  deleteUserCall,
 } from '../../utils/apiCalls';
 import { setAuthError } from '../auth/authSlice';
 
@@ -39,6 +42,7 @@ function* fetchUsersSaga(action) {
   function* updateUserSaga(action) {
     try {
       const { user } = action.payload;
+      console.log(user);
       const res = yield call(updateUserCall, user,);
       if (res) {
         yield put(setUpdatedUser(res));
@@ -84,9 +88,25 @@ function* fetchUsersSaga(action) {
     }
   }
 
+  function* deleteUserSaga(action) {
+    try {
+      const res = yield call(deleteUserCall, action.payload);
+      if (res) {
+        yield put(updateUserList(res));
+      } else if (res.error) {
+        yield put(setModalErrors(res.error));
+        toast.error(res.error, { position: 'top-center' });
+      }
+    } catch (err) {
+      toast.error(err, { position: 'top-center' });
+      console.error('New error', err);
+    }
+  }
+
   export function* watchUsersSaga() {
     yield takeLatest(fetchUsers.type, fetchUsersSaga);
     yield takeLatest(updateUser.type, updateUserSaga);
     yield takeLatest(createUser.type, createUserSaga);
     yield takeLatest(fetchCartUser.type, fetchCartUserSaga);
+    yield takeLatest(deleteUser.type, deleteUserSaga);
   }
