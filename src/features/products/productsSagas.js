@@ -1,7 +1,16 @@
 import { takeLatest, put, call } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
-import _ from 'lodash';
-import { setProducts, fetchProducts, setLoadProducts, updateProduct, setUpdateProduct, createProduct, setNewProduct, deleteProduct } from './productsSlice';
+import {
+  setProducts,
+  fetchProducts,
+  setLoadProducts,
+  updateProduct,
+  setUpdateProduct,
+  createProduct,
+  setNewProduct,
+  deleteProduct,
+  setRemoveDeletedProduct
+} from './productsSlice';
 import { fetchProductsListCall, updateProductCall, createProductCall, deleteProductCall } from '../../utils/apiCalls';
 import { setAuthError } from '../auth/authSlice';
 
@@ -56,11 +65,12 @@ function* fetchProductsSaga(action) {
   function* deleteProductSaga(action) {
     try {
       yield put(setLoadProducts(true));
+      console.log(action.payload);
       const res = yield call(deleteProductCall, action.payload);
       if (res.error && res.error === 'Could not authenticate user') {
         yield put(setAuthError(res.error));
       } else {
-        yield put(setNewProduct(res));
+        yield put(setRemoveDeletedProduct(res));
         yield put(setLoadProducts(false));
       }
     } catch (err) {

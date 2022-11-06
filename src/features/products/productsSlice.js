@@ -1,10 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
+import _ from 'lodash';
 
 const PRODUCTS_SLICE = 'PRODUCTS';
 
 const initialState = {
     products: [],
     loadProducts: false,
+    addProductModalErrors: '',
   };
 
   export const productsSlice = createSlice({
@@ -26,6 +28,14 @@ const initialState = {
       setNewProduct: (state, action) => {
         state.products = [...state.products, action.payload];
       },
+      setRemoveDeletedProduct: (state, action) => {
+        state.products = state.products.filter(product => {
+          return product.id !== action.payload.id;
+        })
+      },
+      setModalProductErrors: (state, action) => {
+        state.addProductModalErrors = action.payload;
+      },
       fetchProducts: () => {},
       updateProduct: () => {},
       createProduct: () => {},
@@ -42,6 +52,8 @@ const initialState = {
     createProduct,
     setNewProduct,
     deleteProduct,
+    setRemoveDeletedProduct,
+    setModalProductErrors,
   } = productsSlice.actions;
 
   export const productsSliceSelector = (state) => state.products;

@@ -8,6 +8,7 @@ import {
 } from './productsSlice';
 import EditProductModal from './modals/EditProduct.modal';
 import AddProductModal from './modals/AddProduct.model';
+import DeleteModal from '../core/Delete.modal';
 
 const INITIAL_FETCH_PARAMS = () => ({
     limit: 8
@@ -17,6 +18,7 @@ const Products = () => {
     const [fetchProductsParams, setFetchProductsParams] = useState(INITIAL_FETCH_PARAMS);
     const { products, loadProducts, totalProducts, skip, limit } = useSelector(productsSliceSelector);
     const [editmodeProductModal, setEditmodeProductModal] = useState(false);
+    const [deletedProductModal, setDeletedProductModal] = useState(false);
     const [product, setProduct] = useState(null);
     const [pagination, setPagination] = useState({ activePage: 1, totalPages: 1 });
     const [totalItems, setTotalItems] = useState(0);
@@ -42,6 +44,11 @@ const Products = () => {
         setProduct(productItem);
     };
 
+    const showDeletedProductModal = (productItem) => {
+        setDeletedProductModal(true);
+        setProduct(productItem);
+    };
+
     const renderProductsList = () => (products.lenght
         ? (
             <Table.Row>
@@ -59,6 +66,12 @@ const Products = () => {
                         circular
                         color="blue"
                         icon="edit" />
+                    <Button
+                        size="tiny"
+                        onClick={() => { showDeletedProductModal({ ...productItem }); }}
+                        circular
+                        color="red"
+                        icon="trash alternate outline" />
                 </Table.Cell>
                 <Table.Cell width={1}><Image src={productItem.thumbnail} size='small' /></Table.Cell>
                 <Table.Cell width={1}>{productItem.title || '-'}</Table.Cell>
@@ -184,6 +197,18 @@ const Products = () => {
                         fetchProductsParams={fetchProductsParams}
                     />
                 )}
+            {deletedProductModal && (
+                <DeleteModal
+                    modalOpen={deletedProductModal}
+                    handleClose={
+                        () => {
+                            setDeletedProductModal(false);
+                        }
+                    }
+                    disableProduct={product}
+                    type={'product'}
+                />
+            )}
         </div>
     );
 };

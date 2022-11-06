@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import _ from 'lodash';
 
 const USERS_SLICE = 'USERS';
 
@@ -36,7 +37,7 @@ const initialState = {
       },
       updateUserList: (state, action) => {
         state.users = state.users.filter(user => {
-          return user.id !== action.payload;
+          return user.id !== action.payload.id;
         })
       },
       fetchUsers: () => {},

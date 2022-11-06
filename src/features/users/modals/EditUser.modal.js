@@ -3,7 +3,7 @@ import { Button, Modal, Form, Grid } from 'semantic-ui-react';
 import { useDispatch } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import { updateUser } from '../usersSlice';
-import DeleteModal from './Delete.modal';
+import DeleteModal from '../../core/Delete.modal';
 import 'react-toastify/dist/ReactToastify.css';
 
 const EditUserModal = (props) => {
@@ -119,6 +119,7 @@ const EditUserModal = (props) => {
             }
           }
         disableUser={props.user}
+        type={'user'}
       />
       )}
     </div>
