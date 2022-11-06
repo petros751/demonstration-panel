@@ -5,10 +5,10 @@ import { setProducts, fetchProducts, setLoadProducts } from './productsSlice';
 import { fetchProductsListCall } from '../../utils/apiCalls';
 import { setAuthError } from '../auth/authSlice';
 
-function* fetchProductsSaga() {
+function* fetchProductsSaga(action) {
     try {
       yield put(setLoadProducts(true));
-      const res = yield call(fetchProductsListCall);
+      const res = yield call(fetchProductsListCall, action.payload);
       if (res.error && res.error === 'Could not authenticate user') {
         yield put(setAuthError(res.error));
       } else {

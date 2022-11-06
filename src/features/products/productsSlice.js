@@ -14,14 +14,15 @@ const initialState = {
       setProducts: (state, action) => {
         console.log(action.payload);
         state.products = action.payload.products;
-        // state.limit = action.payload.limit;
-        // state.offset = action.payload.offset;
-        // state.totalUsers = action.payload.totalUsers;
+        state.limit = action.payload.limit;
+        state.skip = action.payload.skip;
+        state.totalProducts = action.payload.total;
       },
       setLoadProducts: (state, action) => {
         state.loadProducts = action.payload;
       },
       fetchProducts: () => {},
+      updateProduct: () => {},
     },
   });
 
@@ -29,6 +30,7 @@ const initialState = {
     setProducts,
     fetchProducts,
     setLoadProducts,
+    updateProduct,
   } = productsSlice.actions;
 
   export const productsSliceSelector = (state) => state.products;

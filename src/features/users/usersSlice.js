@@ -5,6 +5,7 @@ const USERS_SLICE = 'USERS';
 const initialState = {
     users: [],
     loadUsers: false,
+    addUserModalErrors: '',
   };
 
   export const usersSlice = createSlice({
@@ -21,7 +22,18 @@ const initialState = {
       setLoadUsers: (state, action) => {
         state.loadUsers = action.payload;
       },
+      setModalErrors: (state, action) => {
+        state.addUserModalErrors = action.payload;
+      },
+      setUpdatedUser: (state, action) => {
+        state.users = state.users.map((user) => ((user.id === action.payload.id) ? { ...user, ...action.payload } : user));
+      },
+      setNewUser: (state,action) => {
+
+      },
       fetchUsers: () => {},
+      updateUser: () => {},
+      createUser: () => {},
     },
   });
 
@@ -29,6 +41,11 @@ const initialState = {
     setUsers,
     fetchUsers,
     setLoadUsers,
+    updateUser,
+    setModalErrors,
+    setUpdatedUser,
+    createUser,
+    setNewUser,
   } = usersSlice.actions;
 
   export const usersSliceSelector = (state) => state.users;
