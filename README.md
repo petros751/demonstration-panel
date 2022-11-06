@@ -6,6 +6,12 @@ The panel demostrate the adminastration panel of a company tha thgrought this pa
 
 For the FrontEnd also I have used React-Sagas (https://redux-saga.js.org/).
 
+
+IN ORDER TO LOGIN TO THE PANEL PLEASE USE THIS ACCOUNT: `username: kminchelle` and `password: 0lelplR`
+
+All the actions: Adding, Updating, Deleting a new product or user will not have impact into the server.
+It will simulate a request and will return the results.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
