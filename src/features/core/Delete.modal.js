@@ -7,7 +7,6 @@ import { deleteUser, usersSliceSelector, setModalErrors } from '../users/usersSl
 import { deleteProduct, setModalProductErrors,  productsSliceSelector} from '../products/productsSlice';
 
 const DeleteModal = (props) => {
-  console.log(props);
   const { type } = props;
   const { addUserModalErrors } = useSelector(usersSliceSelector);
   const { addProductModalErrors } = useSelector(productsSliceSelector);

@@ -65,7 +65,6 @@ function* fetchProductsSaga(action) {
   function* deleteProductSaga(action) {
     try {
       yield put(setLoadProducts(true));
-      console.log(action.payload);
       const res = yield call(deleteProductCall, action.payload);
       if (res.error && res.error === 'Could not authenticate user') {
         yield put(setAuthError(res.error));
