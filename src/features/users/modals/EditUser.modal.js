@@ -1,11 +1,8 @@
-/* eslint-disable max-len */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
-import { Button, Modal, Form, Dropdown, Input, Label, Checkbox, Grid, Header } from 'semantic-ui-react';
-import { useDispatch, useSelector } from 'react-redux';
-import { toast, ToastContainer } from 'react-toastify';
-import _ from 'lodash';
-import { usersSliceSelector, updateUser } from '../usersSlice';
+import { Button, Modal, Form, Grid } from 'semantic-ui-react';
+import { useDispatch } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import { updateUser } from '../usersSlice';
 import 'react-toastify/dist/ReactToastify.css';
 
 const EditUserModal = (props) => {
@@ -36,7 +33,6 @@ const EditUserModal = (props) => {
         setEmail(value);
     }
   };
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();

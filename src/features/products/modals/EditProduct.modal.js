@@ -1,50 +1,46 @@
-/* eslint-disable max-len */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
-import { Button, Modal, Form, Dropdown, Input, Label, Checkbox, Grid, Header } from 'semantic-ui-react';
-import { useDispatch, useSelector } from 'react-redux';
-import { toast, ToastContainer } from 'react-toastify';
-import _ from 'lodash';
+import { Button, Modal, Form, Grid } from 'semantic-ui-react';
+import { useDispatch } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 import { updateProduct } from '../productsSlice';
 import 'react-toastify/dist/ReactToastify.css';
 
 const EditProductModal = (props) => {
-    console.log(props);
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [firstName, setFirstName] = useState('');
+  const [title, setTitle] = useState('');
+  const [price, setPrice] = useState('');
+  const [description, setDescription] = useState('');
+  const [stock, setStock] = useState('');
   const [id, setId] = useState('');
   const dispatch = useDispatch();
 
-//   useEffect(() => {
-//     setEmail(props.user.email);
-//     setLastName(props.user.lastName);
-//     setFirstName(props.user.firstName);
-//     setUsername(props.user.username);
-//     setId(props.user.id);
-//   }, [props.user]);
+  useEffect(() => {
+    setTitle(props.product.title);
+    setPrice(props.product.price);
+    setDescription(props.product.description);
+    setStock(props.product.stock);
+    setId(props.product.id);
+  }, [props.user]);
 
   const handleInputChange = (evt, { name, value }) => {
-    if (name === 'lastName') {
-      setLastName(value);
-    } else if (name === 'username') {
-      setUsername(value);
-    } else if (name === 'firstName') {
-      setFirstName(value);
-    } else if (name === 'email') {
-        setEmail(value);
+    if (name === 'title') {
+        setTitle(value);
+    } else if (name === 'price') {
+        setPrice(value);
+    } else if (name === 'description') {
+        setDescription(value);
+    } else if (name === 'stock') {
+        setStock(value);
     }
   };
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const user = {
-      firstName,
-      lastName,
-      username,
-      id,
+        title,
+        price,
+        description,
+        stock,
+        id,
     };
     dispatch(updateProduct({ user, fetchProductsParams: props.fetchProductsParams }));
     props.handleClose();
@@ -69,43 +65,43 @@ const EditProductModal = (props) => {
         <Modal.Content scrolling>
           <Form onSubmit={handleSubmit}>
             <Form.Field>
-              <label>First name</label>
+              <label>Title</label>
               <Form.Input
                 type="text"
-                placeholder="First Name"
-                name="firstName"
+                placeholder="Title"
+                name="title"
                 onChange={handleInputChange}
-                value={firstName}
+                value={title}
               />
             </Form.Field>
             <Form.Field>
-              <label>Last name</label>
+              <label>Price</label>
               <Form.Input
                 type="text"
-                placeholder="Last name"
-                name="lastName"
+                placeholder="Price"
+                name="price"
                 onChange={handleInputChange}
-                value={lastName}
+                value={price}
               />
             </Form.Field>
             <Form.Field>
-              <label>Username</label>
+              <label>Description</label>
               <Form.Input
                 type="text"
-                placeholder="Username"
-                name="username"
+                placeholder="Description"
+                name="description"
                 onChange={handleInputChange}
-                value={username}
+                value={description}
               />
             </Form.Field>
             <Form.Field>
-              <label>Email</label>
+              <label>Stock</label>
               <Form.Input
                 type="text"
-                placeholder="Email"
-                name="Email"
+                placeholder="Stock"
+                name="stock"
                 onChange={handleInputChange}
-                value={email}
+                value={stock}
               />
             </Form.Field>
           </Form>
