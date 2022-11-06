@@ -1,3 +1,11 @@
+# Demostration Panel
+
+This app is only for demostrations reasons.
+I have used as a backend the https://dummyjson.com/ services.
+The panel demostrate the adminastration panel of a company tha thgrought this panel they can manage the employees accounts the products and the orders.
+
+For the frontEnd also I have used React-Sagas (https://redux-saga.js.org/).
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
