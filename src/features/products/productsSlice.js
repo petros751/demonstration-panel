@@ -28,7 +28,8 @@ const initialState = {
       },
       fetchProducts: () => {},
       updateProduct: () => {},
-      createProudct: () => {},
+      createProduct: () => {},
+      deleteProduct: () => {},
     },
   });
 
@@ -38,8 +39,9 @@ const initialState = {
     setLoadProducts,
     updateProduct,
     setUpdateProduct,
-    createProudct,
+    createProduct,
     setNewProduct,
+    deleteProduct,
   } = productsSlice.actions;
 
   export const productsSliceSelector = (state) => state.products;

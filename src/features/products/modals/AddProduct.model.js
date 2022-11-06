@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, Form } from 'semantic-ui-react';
 import { useDispatch } from 'react-redux';
-import { createProudct } from '../productsSlice';
+import { createProduct } from '../productsSlice';
 import 'react-toastify/dist/ReactToastify.css';
 
 const AddProductModal = (props) => {
@@ -37,7 +37,7 @@ const AddProductModal = (props) => {
         price: state.price,
         brand: state.brand,
     };
-    dispatch(createProudct(product));
+    dispatch(createProduct(product));
     props.handleClose();
     setState({ ...initialState });
   };
