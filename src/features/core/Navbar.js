@@ -1,20 +1,16 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Menu, Dropdown, Icon } from 'semantic-ui-react';
-import { authSliceSelector } from '../auth/authSlice';
+import { authSliceSelector, logOut } from '../auth/authSlice';
 
 const NavBar = () => {
   const state = useSelector(authSliceSelector);
-
-  // const onLogout = () => {
-  //   dispatch(logOut());
-  // };
-
-  // const handleItemClick = (type) => {
-  //   setActiveItem(type);
-  //   dispatch(setPanelToShow(type));
-  // };
+  const dispatch = useDispatch();
+  
+  const onLogout = () => {
+    dispatch(logOut());
+  };
 
   return (
     <Menu inverted>
@@ -27,7 +23,7 @@ const NavBar = () => {
             <Dropdown item>
               <Dropdown.Menu>
                 <Dropdown.Item 
-                  // onClick={onLogout}
+                  onClick={onLogout}
                 >
                   <Icon color="red" name="sign-out" />
                   Logout

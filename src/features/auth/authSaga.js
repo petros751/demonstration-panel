@@ -3,7 +3,9 @@ import {
   login,
   setAuth,
   setAuthError,
-  setCurrentUser
+  setCurrentUser,
+  setToken,
+  logOut,
 } from './authSlice';
 import {
   loginUser,
@@ -37,7 +39,19 @@ function* loginSaga(action) {
   }
 }
 
+function* logOutSaga() {
+  try {
+    yield put(setToken(null));
+    window.location.reload();
+  } catch (err) {
+    yield put(setAuthError(err));
+    // eslint-disable-next-line no-console
+    console.error('New error', err);
+  }
+}
+
 
 export function* watchAuthSaga() {
   yield takeLatest(login.type, loginSaga);
+  yield takeLatest(logOut.type, logOutSaga);
 }

@@ -29,11 +29,16 @@ export const authSlice = createSlice({
     setCurrentUser: (state, action) => {
       state.user = action.payload;
     },
-    getLoggedInUser: () => {},
-    logout: () => {},
     setAuthError: (state, action) => {
       state.authError = action.payload;
     },
+    setToken: (state, action) => {
+      state.token = action.payload;
+      if (state.token) localStorage.setItem('token', action.payload);
+      else localStorage.removeItem('token');
+    },
+    getLoggedInUser: () => {},
+    logOut: () => {},
   },
 });
 
@@ -43,8 +48,9 @@ export const {
   register,
   setCurrentUser,
   getLoggedInUser,
-  logout,
+  logOut,
   setAuthError,
+  setToken,
 } = authSlice.actions;
 
 export const authSliceSelector = (state) => state.auth;
