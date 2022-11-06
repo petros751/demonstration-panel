@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Dimmer, Loader, Header, Button } from 'semantic-ui-react';
+import { Table, Dimmer, Loader, Header, Button, Dropdown, Pagination, } from 'semantic-ui-react';
 import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
 import {
@@ -7,17 +7,32 @@ import {
     fetchUsers,
 } from './usersSlice';
 
+const INITIAL_FETCH_PARAMS = () => ({
+  limit: 15
+});
+
 const UsersTable = () => {
+    const [fetchUsersParams, setFetchUsersParams] = useState(INITIAL_FETCH_PARAMS);
     const [editmodeUserModal, setEditmodeUserModal] = useState(false);
     const [user, setUser] = useState(null);
-    const { users, loadUsers } = useSelector(usersSliceSelector);
+    const [pagination, setPagination] = useState({ activePage: 1, totalPages: 1 });
+    const [totalItems, setTotalItems] = useState(0);
+    const [pageSize, setPageSize] = useState(20);
+    const { users, loadUsers, totalUsers, skip, limit } = useSelector(usersSliceSelector);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log('users');
-        console.log('loadUsers');
-        dispatch(fetchUsers());
-    }, []);
+        dispatch(fetchUsers(fetchUsersParams));
+    }, [fetchUsersParams]);
+
+    useEffect(() => {
+      setPageSize(limit);
+      setTotalItems(skip);
+      const totalPages = Math.ceil(totalUsers / limit);
+      const activePage = Math.floor(skip / limit) + 1;
+      setTotalItems(totalUsers);
+      setPagination({ totalPages, activePage });
+    }, [users])
 
     const showeditUserModal = (userItem) => {
         setEditmodeUserModal(true);
@@ -67,8 +82,13 @@ const UsersTable = () => {
         </Table.Row>
     );
 
+    const handlePaginationChange = (e, data) => {
+      console.log(data);
+      setFetchUsersParams({ ...fetchUsersParams, skip: pageSize * (data.activePage - 1) });
+    };
+
     return (
-        <div className="valuesTable">
+        <div>
             <Dimmer active={loadUsers} inverted>
                 <Loader
                     type="ThreeDots"
@@ -96,19 +116,19 @@ const UsersTable = () => {
                     }
                 </Table.Body>
             </Table>
-            {/* <div className="logs-pagination-wrapper">
+          <div className="logs-pagination-wrapper">
           <div>
             {
               totalItems ? (
                 <span>
                   Showing
                   {' '}
-                  <b>{ fetchUsersParams.offset + 1 }</b>
+                  <b>{ skip + 1 }</b>
                   {' '}
                   <b>-</b>
                   <b>
                     {
-                Math.min(fetchUsersParams.offset + fetchUsersParams.limit, totalItems)
+                Math.min(skip + limit, totalItems)
                 }
                   </b>
                   {' '}
@@ -120,23 +140,6 @@ const UsersTable = () => {
             }
           </div>
           <div className="logs-pagination">
-            <div className="logs-pagination-pagesize">
-              {
-              totalItems > 20 ? (
-                <>
-                  Results per page
-                  {' '}
-                  {' '}
-                  <Dropdown
-                    onChange={changePageSize}
-                    options={getPageSizeOptions()}
-                    inline
-                    value={pageSize}
-                  />
-                </>
-              ) : null
-            }
-            </div>
             {
             totalItems > pageSize
             && (
@@ -151,7 +154,7 @@ const UsersTable = () => {
             )
           }
           </div>
-        </div> */}
+        </div>
             {/* Modals */}
             {/* <AddUserModal
           modalOpen={addUserModal}

@@ -11,11 +11,12 @@ import {
 } from '../../utils/apiCalls';
 import { setAuthError } from '../auth/authSlice';
 
-function* fetchUsersSaga() {
+function* fetchUsersSaga(action) {
     try {
+      console.log(action);
       yield put(setLoadUsers(true));
       console.log(' fetch users');
-      const res = yield call(fetchUsersListCall);
+      const res = yield call(fetchUsersListCall, action.payload);
       if (res.error && res.error === 'Could not authenticate user') {
         yield put(setAuthError(res.error));
         // yield put(logOut());

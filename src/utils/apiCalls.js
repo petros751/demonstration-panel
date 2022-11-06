@@ -20,9 +20,9 @@ export const loginUser = async (payload) => {
     return response;
   };
 
-  export const fetchUsersListCall = async () => {
+  export const fetchUsersListCall = async (queryParams) => {
     const requestOptions = {
-      url: GET_USERS,
+      url: `${GET_USERS}?limit=${queryParams.limit}&skip=${queryParams.skip ? queryParams.skip : 0}`,
       method: 'GET',
     };
   

@@ -14,9 +14,9 @@ const initialState = {
       setUsers: (state, action) => {
         console.log(action.payload);
         state.users = action.payload.users;
-        // state.limit = action.payload.limit;
-        // state.offset = action.payload.offset;
-        // state.totalUsers = action.payload.totalUsers;
+        state.limit = action.payload.limit;
+        state.skip = action.payload.skip;
+        state.totalUsers = action.payload.total;
       },
       setLoadUsers: (state, action) => {
         state.loadUsers = action.payload;
