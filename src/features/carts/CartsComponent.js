@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Header, List, Pagination, Dimmer, Loader, Grid, Segment } from 'semantic-ui-react';
+import { Header, List, Pagination, Dimmer, Loader, Grid, Segment, Icon } from 'semantic-ui-react';
 import { useDispatch, useSelector } from 'react-redux';
+import SelectedCart from './SelectedCartComponent';
 import _ from 'lodash';
 import {
     cartsSliceSelector,
@@ -16,6 +17,8 @@ const Carts = () => {
     const [pagination, setPagination] = useState({ activePage: 1, totalPages: 1 });
     const [totalItems, setTotalItems] = useState(0);
     const [pageSize, setPageSize] = useState(20);
+    const [enableSelectedCart, setEnableSelectedCart] = useState(false);
+    const [selectedCart, setSelectedCart] = useState(null);
     const { carts, loadCarts, totalCarts, skip, limit } = useSelector(cartsSliceSelector);
     const dispatch = useDispatch();
 
@@ -32,6 +35,11 @@ const Carts = () => {
         setPagination({ totalPages, activePage });
     }, [carts])
 
+    const showSelecetedCart = (cartItem) => {
+        setEnableSelectedCart(true);
+        setSelectedCart(cartItem);
+    };
+
     const renderCartsList = () => (carts.lenght
         ? (
             <List.Item>
@@ -39,9 +47,8 @@ const Carts = () => {
             </List.Item>
         )
         : carts.map((cartItem, i) => (
-            <List.Item key={i}>
-                <img src="/assets/trolley.png" avatar />
-
+            <List.Item key={i} onClick={() => { showSelecetedCart({ ...cartItem }); }}>
+                 <Icon color='teal' name='shopping cart' />
                 <List.Content verticalAlign='middle'>
                     <List.Header>Cart id: {cartItem.id}</List.Header>
                     <List.Description>Products: {cartItem.totalProducts}, Discount: {cartItem.discountedTotal}€</List.Description>
@@ -89,7 +96,13 @@ const Carts = () => {
                         </Segment>
                     </Grid.Column>
                     <Grid.Column>
-                        <Segment>1</Segment>
+                        <Segment>
+                            {enableSelectedCart ? 
+                                <SelectedCart cart={selectedCart} />
+                            :
+                               <span style={{marginLeft: "50%" }}>Not selected cart from the list!</span>
+                            }
+                        </Segment>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>

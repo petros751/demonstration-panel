@@ -100,7 +100,7 @@ export const loginUser = async (payload) => {
     return response;
   };
 
-  export const createUserCall = async (user, ) => {
+  export const createUserCall = async (user) => {
     const requestOptions = {
       url: CREATE_USER,
       method: 'POST',
@@ -119,3 +119,22 @@ export const loginUser = async (payload) => {
     return response;
   };
 
+  export const fetchCartUserCall = async (id) => {
+    const requestOptions = {
+      url: GET_USERS + '/' + id,
+      method: 'GET',
+    };
+  
+    let response;
+    try {
+      response = await request(requestOptions);
+    } catch (err) {
+      if (err.response && err.response?.data) {
+        response = err.response?.data;
+      }
+    }
+  
+    return response;
+  };
+
+  

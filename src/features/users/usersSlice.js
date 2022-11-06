@@ -6,6 +6,7 @@ const initialState = {
     users: [],
     loadUsers: false,
     addUserModalErrors: '',
+    cartUser: null,
   };
 
   export const usersSlice = createSlice({
@@ -28,12 +29,16 @@ const initialState = {
       setUpdatedUser: (state, action) => {
         state.users = state.users.map((user) => ((user.id === action.payload.id) ? { ...user, ...action.payload } : user));
       },
-      setNewUser: (state,action) => {
+      setNewUser: (state, action) => {
 
+      },
+      setCartUser: (state, action) => {
+        state.cartUser = action.payload;
       },
       fetchUsers: () => {},
       updateUser: () => {},
       createUser: () => {},
+      fetchCartUser: () => {},
     },
   });
 
@@ -46,6 +51,8 @@ const initialState = {
     setUpdatedUser,
     createUser,
     setNewUser,
+    fetchCartUser,
+    setCartUser,
   } = usersSlice.actions;
 
   export const usersSliceSelector = (state) => state.users;
