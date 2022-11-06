@@ -3,7 +3,6 @@ import { Table, Dimmer, Loader, Header, Button, Pagination, } from 'semantic-ui-
 import EditUserModal from './modals/EditUser.modal';
 import AddUserModal from './modals/AddUser.modal';
 import { useDispatch, useSelector } from 'react-redux';
-import _ from 'lodash';
 import {
   usersSliceSelector,
   fetchUsers,

@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button, Modal, Form } from 'semantic-ui-react';
-import { useDispatch, useSelector } from 'react-redux';
-import _ from 'lodash';
+import { useDispatch } from 'react-redux';
 import { createUser } from '../usersSlice';
 import 'react-toastify/dist/ReactToastify.css';
 

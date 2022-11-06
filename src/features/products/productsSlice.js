@@ -12,7 +12,6 @@ const initialState = {
     initialState,
     reducers: {
       setProducts: (state, action) => {
-        console.log(action.payload);
         state.products = action.payload.products;
         state.limit = action.payload.limit;
         state.skip = action.payload.skip;

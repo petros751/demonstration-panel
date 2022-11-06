@@ -6,7 +6,6 @@ import { updateUser } from '../usersSlice';
 import 'react-toastify/dist/ReactToastify.css';
 
 const EditUserModal = (props) => {
-    console.log(props);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [lastName, setLastName] = useState('');

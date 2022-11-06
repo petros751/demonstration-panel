@@ -5,7 +5,6 @@ import { authSliceSelector } from '../features/auth/authSlice';
 
 export const AuthRoute = ({ component: Component, ...rest }) => {
   const { auth } = useSelector(authSliceSelector);
-  console.log('AuthRoute: ', auth);
   const isAuth = auth;
   return (
     <Route
@@ -24,7 +23,6 @@ export const AuthRoute = ({ component: Component, ...rest }) => {
 export const UnAuthRoute = ({ component: Component, ...rest }) => {
   const { auth } = useSelector(authSliceSelector);
   const isAuth = auth;
-  console.log('UnAuthRoute: ', auth);
   return (
     <Route
       {...rest}

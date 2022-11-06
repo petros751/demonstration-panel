@@ -11,7 +11,6 @@ import {
 
 function* loginSaga(action) {
   try {
-    console.log(action);
     const res = yield call(loginUser, action.payload);
     if (res) {
       const { token, email, firstName, gender, id, image, lastName, username } = res;
@@ -24,7 +23,6 @@ function* loginSaga(action) {
         lastName,
         username
       }
-      console.log(res);
       if (res.error) {
         yield put(setAuthError(res.error));
       } else {

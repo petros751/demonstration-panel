@@ -12,7 +12,6 @@ const initialState = {
     initialState,
     reducers: {
       setCarts: (state, action) => {
-        console.log(action.payload);
         state.carts = action.payload.carts;
         state.limit = action.payload.limit;
         state.skip = action.payload.skip;

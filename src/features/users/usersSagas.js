@@ -1,6 +1,5 @@
 import { takeLatest, put, call } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
-import _ from 'lodash';
 import {
   setUsers,
   fetchUsers,
@@ -27,9 +26,7 @@ function* fetchUsersSaga(action) {
       const res = yield call(fetchUsersListCall, action.payload);
       if (res.error && res.error === 'Could not authenticate user') {
         yield put(setAuthError(res.error));
-        // yield put(logOut());
       } else {
-        console.log(res);
         yield put(setUsers(res));
         yield put(setLoadUsers(false));
       }
@@ -58,8 +55,7 @@ function* fetchUsersSaga(action) {
 
   function* createUserSaga(action) {
     try {
-      const { user } = action.payload;
-      const res = yield call(createUserCall, user);
+      const res = yield call(createUserCall, action.payload);
       if (res) {
         yield put(setNewUser(res));
         toast.success('User added successfully!', { position: 'top-center' });

@@ -14,7 +14,6 @@ const initialState = {
     initialState,
     reducers: {
       setUsers: (state, action) => {
-        console.log(action.payload);
         state.users = action.payload.users;
         state.limit = action.payload.limit;
         state.skip = action.payload.skip;
@@ -30,7 +29,7 @@ const initialState = {
         state.users = state.users.map((user) => ((user.id === action.payload.id) ? { ...user, ...action.payload } : user));
       },
       setNewUser: (state, action) => {
-
+        state.users = [...state.users, action.payload];
       },
       setCartUser: (state, action) => {
         state.cartUser = action.payload;
