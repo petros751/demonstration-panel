@@ -9,8 +9,10 @@ function* fetchCartsSaga(action) {
     try {
       yield put(setLoadCarts(true));
       const res = yield call(fetchCartsListCall, action.payload);
-      if (res.error && res.error === 'Could not authenticate user') {
+      if (res.error) {
         yield put(setAuthError(res.error));
+      } else if (res.message) {
+        toast.error(res.message, { position: 'top-center' });
       } else {
         yield put(setCarts(res));
         yield put(setLoadCarts(false));

@@ -21,7 +21,7 @@ import {
   fetchCartUserCall,
   deleteUserCall,
 } from '../../utils/apiCalls';
-import { setAuthError } from '../auth/authSlice';
+import { setAuthError, logOut } from '../auth/authSlice';
 
 function* fetchUsersSaga(action) {
     try {
@@ -29,7 +29,10 @@ function* fetchUsersSaga(action) {
       const res = yield call(fetchUsersListCall, action.payload);
       if (res.error && res.error === 'Could not authenticate user') {
         yield put(setAuthError(res.error));
-      } else {
+        yield put(logOut());
+      } else if (res.message) {
+        toast.error(res.message, { position: 'top-center' });
+      }else {
         yield put(setUsers(res));
         yield put(setLoadUsers(false));
       }
@@ -48,6 +51,8 @@ function* fetchUsersSaga(action) {
       } else if (res.error) {
         yield put(setModalErrors(res.error));
         toast.error(res.error, { position: 'top-center' });
+      } else if (res.message) {
+        toast.error(res.message, { position: 'top-center' });
       }
     } catch (err) {
       toast.error(err, { position: 'top-center' });
@@ -64,6 +69,8 @@ function* fetchUsersSaga(action) {
       } else if (res.error) {
         yield put(setModalErrors(res.error));
         toast.error(res.error, { position: 'top-center' });
+      } else if (res.message) {
+        toast.error(res.message, { position: 'top-center' });
       }
     } catch (err) {
       toast.error(err, { position: 'top-center' });
@@ -79,6 +86,8 @@ function* fetchUsersSaga(action) {
       } else if (res.error) {
         yield put(setModalErrors(res.error));
         toast.error(res.error, { position: 'top-center' });
+      } else if (res.message) {
+        toast.error(res.message, { position: 'top-center' });
       }
     } catch (err) {
       toast.error(err, { position: 'top-center' });
@@ -94,6 +103,8 @@ function* fetchUsersSaga(action) {
       } else if (res.error) {
         yield put(setModalErrors(res.error));
         toast.error(res.error, { position: 'top-center' });
+      } else if (res.message) {
+        toast.error(res.message, { position: 'top-center' });
       }
     } catch (err) {
       toast.error(err, { position: 'top-center' });
