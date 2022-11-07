@@ -1,16 +1,17 @@
 # Demostration Panel
 
-This app is only for demostrations reasons.
+This app is only for demonstration purposes.
 I have used as a backend the https://dummyjson.com/ services.
-The panel demostrate the adminastration panel of a company tha thgrought this panel they can manage the employees accounts the products and the orders.
+The panel demonstrate the administration panel of a company that through this panel they can manage the employees accounts, the products and the orders.
 
 For the FrontEnd also I have used React-Sagas (https://redux-saga.js.org/).
-
 
 IN ORDER TO LOGIN TO THE PANEL PLEASE USE THIS ACCOUNT: `username: kminchelle` and `password: 0lelplR`
 
 All the actions: Adding, Updating, Deleting a new product or user will not have impact into the server.
 It will simulate a request and will return the results.
+
+`The update product request it's not working on purpose in order to show you that the error handling is working.`
 
 # Getting Started with Create React App
 
