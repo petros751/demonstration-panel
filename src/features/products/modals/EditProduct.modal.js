@@ -53,15 +53,7 @@ const EditProductModal = (props) => {
   return (
     <div>
       <Modal open={props.modalOpen}>
-        <Modal.Header>
-          <Grid divided="vertically">
-            <Grid.Row columns={3}>
-              <Grid.Column style={{ marginBottom: 0, margin: 'auto' }}>
-                Edit Product
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Modal.Header>
+        <Modal.Header>Edit Product</Modal.Header>
         <Modal.Content scrolling>
           <Form onSubmit={handleSubmit}>
             <Form.Field>

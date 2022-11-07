@@ -106,7 +106,7 @@ const Carts = () => {
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
-            <div className="logs-pagination-wrapper">
+            <div className="pagination-wrapper">
                 <div>
                     {
                         totalItems ? (

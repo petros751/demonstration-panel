@@ -53,6 +53,7 @@ const UsersTable = () => {
       <Table.Row key={i}>
         <Table.Cell width={1}>
           <Button
+            className="settings-button"
             size="tiny"
             onClick={() => { showeditUserModal({ ...userItem }); }}
             circular
@@ -126,7 +127,7 @@ const UsersTable = () => {
           }
         </Table.Body>
       </Table>
-      <div className="logs-pagination-wrapper">
+      <div className="pagination-wrapper">
         <div>
           {
             totalItems ? (

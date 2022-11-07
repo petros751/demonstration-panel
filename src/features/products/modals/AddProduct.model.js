@@ -49,7 +49,7 @@ const AddProductModal = (props) => {
   return (
     <div>
       <Modal open={props.modalOpen}>
-        <Modal.Header>Add New User</Modal.Header>
+        <Modal.Header>Add New Product</Modal.Header>
         <Modal.Content>
           <Form onSubmit={handleSubmit}>
             <Form.Field>

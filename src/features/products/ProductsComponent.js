@@ -136,7 +136,7 @@ const Products = () => {
                     {products ? renderProductsList(products) : productsListLoading}
                 </Table.Body>
             </Table>
-            <div className="logs-pagination-wrapper">
+            <div className="pagination-wrapper">
                 <div>
                     {
                         totalItems ? (
