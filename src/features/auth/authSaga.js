@@ -1,4 +1,5 @@
 import { takeLatest, put, call } from 'redux-saga/effects';
+import { toast } from 'react-toastify';
 import {
   login,
   setAuth,
@@ -27,6 +28,9 @@ function* loginSaga(action) {
       }
       if (res.error) {
         yield put(setAuthError(res.error));
+      } else if(res.message) {
+        yield put(setAuthError(res.message));
+        toast.error(res.message, { position: 'top-center' });
       } else {
         yield put(setAuth(token));
         yield put(setCurrentUser(user));
@@ -45,7 +49,6 @@ function* logOutSaga() {
     window.location.reload();
   } catch (err) {
     yield put(setAuthError(err));
-    // eslint-disable-next-line no-console
     console.error('New error', err);
   }
 }

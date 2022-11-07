@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   Button, Form, Header, Icon,
 } from 'semantic-ui-react';
-import { toast } from 'react-toastify';
 import Loader from 'react-loader-spinner';
 import { useHistory } from 'react-router';
 import { login, authSliceSelector, setAuthError } from './authSlice';
@@ -27,7 +26,6 @@ const LoginComponent = () => {
   useEffect(() => {
     if (authError) {
       setIsLoading(false);
-      toast.error(authError);
       dispatch(setAuthError(null));
       setIsLoading(false);
     }
