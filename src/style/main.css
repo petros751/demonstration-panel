@@ -71,11 +71,3 @@ margin: auto !important;
 .pagination-wrapper .logs-pagination .logs-pagination-pagesize {
   margin-right: 2rem;
 }
-
-.settings-button {
-  display: none !important;  
-}
-
-.settings-button:hover {
-  display: inline-block!important;  
-}

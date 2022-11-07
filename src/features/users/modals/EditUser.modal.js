@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Modal, Form, Grid } from 'semantic-ui-react';
+import { Button, Modal, Form } from 'semantic-ui-react';
 import { useDispatch } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import { updateUser } from '../usersSlice';
-import DeleteModal from '../../core/Delete.modal';
 import 'react-toastify/dist/ReactToastify.css';
 
 const EditUserModal = (props) => {
@@ -12,7 +11,6 @@ const EditUserModal = (props) => {
   const [lastName, setLastName] = useState('');
   const [firstName, setFirstName] = useState('');
   const [id, setId] = useState('');
-  const [disableModal, setDisableModal] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -49,10 +47,6 @@ const EditUserModal = (props) => {
 
   const onCloseClick = () => {
     props.handleClose();
-  };
-
-  const deleteUserModal = () => {
-    setDisableModal(!disableModal);
   };
 
   return (
@@ -102,7 +96,6 @@ const EditUserModal = (props) => {
               />
             </Form.Field>
           </Form>
-          <div style={{textAlign: "center", marginTop: "2%"}}><Button onClick={deleteUserModal} basic color='red'>Delete User</Button></div>
         </Modal.Content>
         <Modal.Actions>
           <Button type="submit" className="loginBtn btn" onClick={handleSubmit}>Save User</Button>
@@ -110,18 +103,6 @@ const EditUserModal = (props) => {
         </Modal.Actions>
       </Modal>
       <ToastContainer />
-      {disableModal && (
-      <DeleteModal
-        modalOpen={disableModal}
-        handleClose={
-            () => {
-              setDisableModal(false);
-            }
-          }
-        disableUser={props.user}
-        type={'user'}
-      />
-      )}
     </div>
   );
 };

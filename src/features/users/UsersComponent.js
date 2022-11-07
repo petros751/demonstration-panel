@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Table, Dimmer, Loader, Header, Button, Pagination, } from 'semantic-ui-react';
 import EditUserModal from './modals/EditUser.modal';
 import AddUserModal from './modals/AddUser.modal';
+import DeleteModal from '../core/Delete.modal';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   usersSliceSelector,
@@ -20,6 +21,7 @@ const UsersTable = () => {
   const [pagination, setPagination] = useState({ activePage: 1, totalPages: 1 });
   const [totalItems, setTotalItems] = useState(0);
   const [pageSize, setPageSize] = useState(20);
+  const [disableModal, setDisableModal] = useState(false);
   const { users, loadUsers, totalUsers, skip, limit } = useSelector(usersSliceSelector);
   const dispatch = useDispatch();
 
@@ -41,6 +43,11 @@ const UsersTable = () => {
     setUser(userItem);
   };
 
+  const deleteUserModal = (userItem) => {
+    setDisableModal(true);
+    setUser(userItem);
+  };
+
   const renderUsersList = () => (!users.length
     ? (
       <Table.Row>
@@ -50,7 +57,7 @@ const UsersTable = () => {
       </Table.Row>
     )
     : users.map((userItem, i) => (
-      <Table.Row key={i}>
+      <Table.Row key={i} className="dispaly-button">
         <Table.Cell width={1}>
           <Button
             className="settings-button"
@@ -66,6 +73,15 @@ const UsersTable = () => {
         <Table.Cell width={1}>{userItem.username || '-'}</Table.Cell>
         <Table.Cell width={1}>{userItem.email || '-'}</Table.Cell>
         <Table.Cell width={1}>{userItem.company.title || '-'}</Table.Cell>
+        <Table.Cell width={1} style={{textAlign: 'end'}}>
+          <Button
+            className="settings-button"
+            size="tiny"
+            onClick={() => { deleteUserModal({ ...userItem }); }}
+            circular
+            color="red"
+            icon="trash alternate outline" />
+        </Table.Cell>
       </Table.Row>
     )));
 
@@ -119,6 +135,7 @@ const UsersTable = () => {
             <Table.HeaderCell>Username</Table.HeaderCell>
             <Table.HeaderCell>Email</Table.HeaderCell>
             <Table.HeaderCell>Role</Table.HeaderCell>
+            <Table.HeaderCell style={{textAlign: 'end'}}>Delete</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
@@ -188,6 +205,18 @@ const UsersTable = () => {
             fetchUsersParams={fetchUsersParams}
           />
         )}
+      {disableModal && (
+        <DeleteModal
+          modalOpen={disableModal}
+          handleClose={
+            () => {
+              setDisableModal(false);
+            }
+          }
+          disableUser={user}
+          type={'user'}
+        />
+      )}
     </div>
   );
 };

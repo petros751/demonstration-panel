@@ -66,18 +66,21 @@ const Products = () => {
                         circular
                         color="blue"
                         icon="edit" />
-                    <Button
-                        size="tiny"
-                        onClick={() => { showDeletedProductModal({ ...productItem }); }}
-                        circular
-                        color="red"
-                        icon="trash alternate outline" />
                 </Table.Cell>
                 <Table.Cell width={1}><Image src={productItem.thumbnail} size='small' /></Table.Cell>
                 <Table.Cell width={1}>{productItem.title || '-'}</Table.Cell>
                 <Table.Cell width={1}>{productItem.stock || '-'}</Table.Cell>
                 <Table.Cell width={1}>{productItem.price || '-'}€</Table.Cell>
                 <Table.Cell width={1}>{productItem.brand || '-'}</Table.Cell>
+                <Table.Cell width={1} style={{textAlign: 'end'}}>
+                    <Button
+                        className="settings-button"
+                        size="tiny"
+                        onClick={() => { showDeletedProductModal({ ...productItem }); }}
+                        circular
+                        color="red"
+                        icon="trash alternate outline" />
+                </Table.Cell>
             </Table.Row>
         )));
 
@@ -130,6 +133,7 @@ const Products = () => {
                         <Table.HeaderCell>Stock</Table.HeaderCell>
                         <Table.HeaderCell>Price</Table.HeaderCell>
                         <Table.HeaderCell>Brand</Table.HeaderCell>
+                        <Table.HeaderCell style={{textAlign: 'end'}}>Delete</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
