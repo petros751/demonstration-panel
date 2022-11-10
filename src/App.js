@@ -7,6 +7,8 @@ import LoginComponent from './features/auth/LoginComponent';
 import MainComponent from './features/MainComponent';
 import { isLoading, loadingMessage } from './app/appSlice';
 import Navbar from './features/core/Navbar';
+// import { Provider } from 'react-redux';
+// import { store } from './app/store';
 
 const App = () => {
   const loading = useSelector(isLoading);
@@ -14,6 +16,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
+      {/* <Provider store={store}/> */}
       <Dimmer active={loading} page>
         <Loader>{ message }</Loader>
       </Dimmer>

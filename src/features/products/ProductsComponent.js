@@ -53,7 +53,7 @@ const Products = () => {
         ? (
             <Table.Row>
                 <Table.Cell textAlign="center" colSpan={9}>
-                    <Header as="h4">No products found!</Header>
+                    <Header data-cy='empty' as="h4">No products found!</Header>
                 </Table.Cell>
             </Table.Row>
         )
@@ -61,6 +61,7 @@ const Products = () => {
             <Table.Row key={i} warning={productItem.stock <= 5 ? true : false} >
                 <Table.Cell width={1}>
                     <Button
+                        data-cy='show-edit-product-modal'
                         size="tiny"
                         onClick={() => { showeditProductModal({ ...productItem }); }}
                         circular
@@ -74,6 +75,7 @@ const Products = () => {
                 <Table.Cell width={1}>{productItem.brand || '-'}</Table.Cell>
                 <Table.Cell width={1} style={{textAlign: 'end'}}>
                     <Button
+                        data-cy='show-delete-product-modal'
                         className="settings-button"
                         size="tiny"
                         onClick={() => { showDeletedProductModal({ ...productItem }); }}
@@ -121,7 +123,7 @@ const Products = () => {
             </Dimmer>
             <div className="logsFilters">
                 <div className="filtersDate">
-                    <Button circular size="tiny" onClick={() => showAddProductModal()} color="blue" icon="add circle" />
+                    <Button data-cy='show-add-product-modal' circular size="tiny" onClick={() => showAddProductModal()} color="blue" icon="add circle" />
                 </div>
             </div>
             <Table striped>
@@ -136,7 +138,7 @@ const Products = () => {
                         <Table.HeaderCell style={{textAlign: 'end'}}>Delete</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
-                <Table.Body>
+                <Table.Body data-cy='products-list'>
                     {products ? renderProductsList(products) : productsListLoading}
                 </Table.Body>
             </Table>
