@@ -53,7 +53,7 @@ const Products = () => {
         ? (
             <Table.Row>
                 <Table.Cell textAlign="center" colSpan={9}>
-                    <Header data-cy='empty' as="h4">No products found!</Header>
+                    <Header data-cy='empty-product-list' as="h4">No products found!</Header>
                 </Table.Cell>
             </Table.Row>
         )
@@ -91,6 +91,7 @@ const Products = () => {
             <Table.Cell colSpan={13} textAlign="center">
                 <Dimmer active inverted>
                     <Loader
+                        data-cy='loader-spinner'
                         type="ThreeDots"
                         color="#00BFFF"
                         height={80}
@@ -126,7 +127,7 @@ const Products = () => {
                     <Button data-cy='show-add-product-modal' circular size="tiny" onClick={() => showAddProductModal()} color="blue" icon="add circle" />
                 </div>
             </div>
-            <Table striped>
+            <Table data-cy='table' striped>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>Edit</Table.HeaderCell>
@@ -143,7 +144,7 @@ const Products = () => {
                 </Table.Body>
             </Table>
             <div className="pagination-wrapper">
-                <div>
+                <div data-cy='total-list-items-component'>
                     {
                         totalItems ? (
                             <span>
@@ -170,6 +171,7 @@ const Products = () => {
                         totalItems > pageSize
                         && (
                             <Pagination
+                                data-cy='pagination'
                                 activePage={pagination.activePage}
                                 onPageChange={handlePaginationChange}
                                 totalPages={pagination.totalPages || 0}

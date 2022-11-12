@@ -1,52 +1,69 @@
 import Products from '../../src/features/products/ProductsComponent';
-
+import { store } from '../../src/app/store';
+import { Provider } from 'react-redux';
 describe('<Products>', () => {
-    before(() => {
-        cy.viewport(1600, 900);
-        cy.visit(`${Cypress.env('localUrl')}login`);
-        // cy.get('[data-cy=email]').type(Cypress.env('username'));
-        // cy.get('[data-cy=password]').type(`${Cypress.env('password')}{Enter}`);
-        // cy.get('[data-cy=close-whats-new]', { timeout: 10 * 1000 }).click();
-        // cy.get('[data-cy=loading-spinner]', { timeout: 60 * 1000 }).should('not.exist');
-    });
     beforeEach(() => {
-        cy.mount(<Products />);
+        cy.viewport(1280, 720);
+        cy.mount( <Provider store={store}><Products /></Provider>);
     })
-    it('Check no products', () => {
-        cy.get('[data-cy=empty]').contains('No products');
+    it('Products must be loaded', () => {
+        cy.get('[data-cy=empty-product-list]').should('not.exist');
+    })
+    it('Table must be exist', () => {
+        cy.get('[data-cy=table]').should('exist');
+    })
+    it('Check if total item component exist', () => {
+        cy.get('[data-cy=total-list-items-component]').should('exist');
+    })
+    it('Check if pagination component exist', () => {
+        cy.get('[data-cy=pagination]').should('exist');
+    })
+    // MODALS CLOSE FUNCTIONALITY
+    it('Open/Edit/Close ADD product modal', () => {
+        cy.get('[data-cy=show-add-product-modal]').click();
+        cy.get('[data-cy=product-modal]').should('exist');
+        cy.get('[data-cy=add-modal-title').type("Test title");
+        cy.get('[data-cy=add-modal-price').type("1800");
+        cy.get('[data-cy=add-modal-stock').type("10");
+        cy.get('[data-cy=add-modal-brand').type("Test brand");
+        cy.get('[data-cy=product-modal-close]').click();
+    })
+    it('Open/Close DELETE product modal', () => {
+        cy.get('tr>td').eq(6).children().first().click();
+        cy.get('[data-cy=delete-modal]').should('exist');
+        cy.get('[data-cy=delete-modal-close]').click();
+    })
+    it('Open/Edit/Close EDIT product modal', () => {
+        cy.get('tr>td').eq(0).children().first().click();
+        cy.get('[data-cy=edit-modal]').should('exist');
+        cy.get('[data-cy=edit-modal-title').clear().type("Test title");
+        cy.get('[data-cy=edit-modal-price').clear().type("1800");
+        cy.get('[data-cy=edit-modal-description').clear().type("Test description");
+        cy.get('[data-cy=edit-modal-stock').clear().type("10");
+        cy.get('[data-cy=product-modal-close]').click();
+    })
+    // MODALS SAVE FUNCTIONALITY
+    it('Open/Edit/Save ADD product modal', () => {
+        cy.get('[data-cy=show-add-product-modal]').click();
+        cy.get('[data-cy=product-modal]').should('exist');
+        cy.get('[data-cy=add-modal-title').type("Test title");
+        cy.get('[data-cy=add-modal-price').type("1800");
+        cy.get('[data-cy=add-modal-stock').type("10");
+        cy.get('[data-cy=add-modal-brand').type("Test brand");
+        cy.get('[data-cy=product-modal-save]').click();
+    })
+    it('Open/Delet DELETE product modal', () => {
+        cy.get('tr>td').eq(6).children().first().click();
+        cy.get('[data-cy=delete-modal]').should('exist');
+        cy.get('[data-cy=delete-modal-delete]').click();
+    })
+    it('Open/Edit/Save EDIT product modal', () => {
+        cy.get('tr>td').eq(0).children().first().click();
+        cy.get('[data-cy=edit-modal]').should('exist');
+        cy.get('[data-cy=edit-modal-title').clear().type("Test title");
+        cy.get('[data-cy=edit-modal-price').clear().type("1800");
+        cy.get('[data-cy=edit-modal-description').clear().type("Test description");
+        cy.get('[data-cy=edit-modal-stock').clear().type("10");
+        cy.get('[data-cy=product-modal-update]').click();
     })
 })
-
-// describe('<Movielist>', () => {
-//     beforeEach(() => {
-//       cy.mount(<Movielist />);
-//       cy.get('[data-cy=empty]').contains('No movies here');
-//       const formInput = cy.get('form input');
-//       formInput.should('have.value', '');
-//       formInput.type('Monster Inc.')
-//         .should('have.value', 'Monster Inc.');
-//       cy.get('form button').click();
-//       formInput.clear();
-//       formInput.type('Circle of eight')
-//         .should('have.value', 'Circle of eight');
-//       cy.get('form button').click();
-//       cy.get('[data-cy=movie-list]').children().should('have.length', 2);
-//     });
-//     it('The Listof movies appends', () => {
-//       cy.get('form input')
-//         .type('Monster Inc.')
-//         .should('have.value', 'Monster Inc.')
-//       cy.get('form button').click();
-//       cy.get('[data-cy=movie-list]').children().should('have.length', 3);
-//     })
-  
-//     it('uncheck movie', () => {
-//       const lastListitem = cy.get('[data-cy=movie-list]:nth-child(1) li:last-child');
-//       lastListitem.click();
-//       lastListitem.should('have.class', 'strike');
-//       cy.get('[data-cy=clear-movie]').click();
-//       cy.get('[data-cy=movie-list]').children().should('have.length', 1);
-//       cy.get('[data-cy=clear-movie]').click();
-//       cy.get('[data-cy=movie-list]').children().should('have.length', 1);
-//     })
-//   })

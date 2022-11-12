@@ -57,10 +57,10 @@ const LoginComponent = () => {
       <div className="login_form_container">
         <div className="login_form_wrapper">
           <div>
-            <Header data-cy='welcome login' as="h1" className="login_welcome">
+            <Header data-cy='welcome_login' as="h1" className="login_welcome">
               Welcome back!
             </Header>
-            <Form onSubmit={handleSubmit} className="login_form">
+            <Form data-cy='login-form' onSubmit={handleSubmit} className="login_form">
               <Form.Input
                 icon="user"
                 iconPosition="left"

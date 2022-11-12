@@ -39,8 +39,8 @@ const DeleteModal = (props) => {
   };
   return (
     <div>
-      <Modal size="mini" open={props.modalOpen}>
-        <Modal.Header>{type === 'user' ? 'Delete User' : 'Delete Product ' }</Modal.Header>
+      <Modal size="mini" open={props.modalOpen} data-cy="delete-modal">
+        <Modal.Header data-cy="delete-modal-header">{type === 'user' ? 'Delete User' : 'Delete Product ' }</Modal.Header>
         <Modal.Content>
           <div>
             You are about to delete the:
@@ -59,8 +59,8 @@ const DeleteModal = (props) => {
           </div>
         </Modal.Content>
         <Modal.Actions>
-          <Button type="submit" basic color='red' onClick={handleSubmit}>Delete</Button>
-          <Button onClick={onCloseClick}>Cancel</Button>
+          <Button data-cy='delete-modal-delete' type="submit" basic color='red' onClick={handleSubmit}>Delete</Button>
+          <Button data-cy='delete-modal-close' onClick={onCloseClick}>Cancel</Button>
         </Modal.Actions>
       </Modal>
       <ToastContainer />

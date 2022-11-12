@@ -48,13 +48,14 @@ const AddProductModal = (props) => {
 
   return (
     <div>
-      <Modal open={props.modalOpen}>
+      <Modal open={props.modalOpen} data-cy="product-modal">
         <Modal.Header>Add New Product</Modal.Header>
         <Modal.Content>
           <Form onSubmit={handleSubmit}>
             <Form.Field>
               <label>Title</label>
               <Form.Input
+                data-cy="add-modal-title"
                 type="text"
                 placeholder="Title"
                 name="title"
@@ -63,18 +64,9 @@ const AddProductModal = (props) => {
               />
             </Form.Field>
             <Form.Field>
-              <label>Stock</label>
-              <Form.Input
-                type="text"
-                placeholder="Stock"
-                name="stock"
-                onChange={handleInputChange}
-                value={state.stock}
-              />
-            </Form.Field>
-            <Form.Field>
               <label>Price</label>
               <Form.Input
+                data-cy="add-modal-price"
                 type="text"
                 placeholder="Price"
                 name="price"
@@ -83,8 +75,20 @@ const AddProductModal = (props) => {
               />
             </Form.Field>
             <Form.Field>
+              <label>Stock</label>
+              <Form.Input
+                data-cy="add-modal-stock"
+                type="text"
+                placeholder="Stock"
+                name="stock"
+                onChange={handleInputChange}
+                value={state.stock}
+              />
+            </Form.Field>
+            <Form.Field>
               <label>Brand</label>
               <Form.Input
+                data-cy="add-modal-brand"
                 type="text"
                 placeholder="Brand"
                 name="brand"
@@ -95,8 +99,8 @@ const AddProductModal = (props) => {
           </Form>
         </Modal.Content>
         <Modal.Actions>
-          <Button type="submit" className="loginBtn btn" onClick={handleSubmit}>Create Product</Button>
-          <Button onClick={onCloseClick}>Close</Button>
+          <Button data-cy='product-modal-save' type="submit" className="loginBtn btn" onClick={handleSubmit}>Create Product</Button>
+          <Button data-cy='product-modal-close' onClick={onCloseClick}>Close</Button>
         </Modal.Actions>
       </Modal>
     </div>

@@ -52,13 +52,14 @@ const EditProductModal = (props) => {
 
   return (
     <div>
-      <Modal open={props.modalOpen}>
+      <Modal open={props.modalOpen} data-cy="edit-modal">
         <Modal.Header>Edit Product</Modal.Header>
         <Modal.Content scrolling>
           <Form onSubmit={handleSubmit}>
             <Form.Field>
               <label>Title</label>
               <Form.Input
+                data-cy="edit-modal-title"
                 type="text"
                 placeholder="Title"
                 name="title"
@@ -69,6 +70,7 @@ const EditProductModal = (props) => {
             <Form.Field>
               <label>Price</label>
               <Form.Input
+                data-cy="edit-modal-price"
                 type="text"
                 placeholder="Price"
                 name="price"
@@ -79,6 +81,7 @@ const EditProductModal = (props) => {
             <Form.Field>
               <label>Description</label>
               <Form.Input
+                data-cy="edit-modal-description"
                 type="text"
                 placeholder="Description"
                 name="description"
@@ -89,6 +92,7 @@ const EditProductModal = (props) => {
             <Form.Field>
               <label>Stock</label>
               <Form.Input
+                data-cy="edit-modal-stock"
                 type="text"
                 placeholder="Stock"
                 name="stock"
@@ -99,8 +103,8 @@ const EditProductModal = (props) => {
           </Form>
         </Modal.Content>
         <Modal.Actions>
-          <Button type="submit" className="loginBtn btn" onClick={handleSubmit}>Save User</Button>
-          <Button onClick={onCloseClick}>Close</Button>
+          <Button data-cy='product-modal-update' type="submit" className="loginBtn btn" onClick={handleSubmit}>Save User</Button>
+          <Button data-cy='product-modal-close' onClick={onCloseClick}>Close</Button>
         </Modal.Actions>
       </Modal>
       <ToastContainer />
