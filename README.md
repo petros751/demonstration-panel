@@ -13,6 +13,11 @@ It will simulate a request and will return the results.
 
 `The update product request it's not working on purpose in order to show you that the error handling is working.`
 
+# Testing Methodology
+
+I used end-to-end methodology with Cypress (https://www.cypress.io/) in order to test the application.
+I have create component test for the Products component and also I've create and API test.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
